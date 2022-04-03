@@ -22,17 +22,23 @@ pipeline {
         }
       }
 
-	if(env.BRANCH_NAME == 'develop'){
-     	stage("Develop"){
-        	sh 'echo "branch develop..."'
-        }
-     }
+    stage('develop-test') {
+       when {
+          branch 'develop'
+       }
+       steps {
+          sh  'echo "triggered by develop"'
+      }
+  }
 
-	if(env.BRANCH_NAME == 'master'){
-     		stage("Master"){
-        	sh 'echo "branch master..."'
-        }
-     }
+stage('master') {
+       when {
+          branch 'master'
+       }
+       steps {
+          sh  'echo "triggered by master"'
+      }
+  }
 
          stage("Deploy application") { 
          steps { 
