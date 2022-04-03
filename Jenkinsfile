@@ -22,6 +22,18 @@ pipeline {
         }
       }
 
+	if(env.BRANCH_NAME == 'develop'){
+     	stage("Develop"){
+        	sh 'echo "branch develop..."'
+        }
+     }
+
+	if(env.BRANCH_NAME == 'master'){
+     		stage("Master"){
+        	sh 'echo "branch master..."'
+        }
+     }
+
          stage("Deploy application") { 
          steps { 
            sh 'echo "deploying application..."'
